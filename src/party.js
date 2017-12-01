@@ -3,7 +3,7 @@ const {app, BrowserWindow, TouchBar} = require('electron');
 
 const {TouchBarLabel, TouchBarButton, TouchBarSpacer} = TouchBar;
 
-const numOfParrotsToDisplay = 4;
+const numOfParrotsToDisplay = 12;
 const parrots = [];
 
 let parrotFrames = [];
@@ -12,10 +12,11 @@ const initParrots = () => {
     const parrotOffset = 2;
     let parrotFrame = 0;
     for (let x = 0; x < numOfParrotsToDisplay; x++) {
-        const parrotPath = path.join(__dirname, `/parrot/parrot00${parrotFrame}.png`);
+        const parrotPath = path.join(__dirname, `/parrot/parrot_resized_00${parrotFrame}.png`);
         parrots.push(new TouchBarButton({
             icon: parrotPath,
-            backgroundColor: '#000'
+            backgroundColor: '#000',
+            iconPosition: 'overlay'
         }));
         //parrots.push(new TouchBarSpacer({size: 'large'}));
         parrotFrames.push(parrotFrame);
@@ -36,7 +37,7 @@ const updateParrotFrame = (parrotIndex) => {
     } else {
         parrotFrames[parrotIndex] += 1;
     }
-    const parrotPath = path.join(__dirname, `/parrot/parrot00${parrotFrames[parrotIndex]}.png`);
+    const parrotPath = path.join(__dirname, `/parrot/parrot_resized_00${parrotFrames[parrotIndex]}.png`);
     parrots[parrotIndex].icon = parrotPath;
 }
 
